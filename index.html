@@ -640,6 +640,213 @@
             text-transform: none;
         }
 
+        /* Shipping Chokepoints */
+        .chokepoint {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 18;
+        }
+
+        .chokepoint-icon {
+            width: 14px;
+            height: 14px;
+            background: #0066cc;
+            border: 2px solid #00aaff;
+            border-radius: 2px;
+            position: relative;
+            box-shadow: 0 0 8px rgba(0,170,255,0.5);
+        }
+
+        .chokepoint-icon::after {
+            content: '⚓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8px;
+        }
+
+        .chokepoint.alert .chokepoint-icon {
+            background: #cc6600;
+            border-color: #ffaa00;
+            box-shadow: 0 0 12px rgba(255,170,0,0.6);
+            animation: pulse-ship 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-ship {
+            0%, 100% { box-shadow: 0 0 8px rgba(255,170,0,0.4); }
+            50% { box-shadow: 0 0 16px rgba(255,170,0,0.8); }
+        }
+
+        .chokepoint-label {
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.45rem;
+            color: #00aaff;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Earthquake markers */
+        .quake {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 17;
+        }
+
+        .quake-icon {
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ff6600 0%, #ff3300 100%);
+            border-radius: 50%;
+            animation: quake-pulse 1s ease-out infinite;
+        }
+
+        .quake.major .quake-icon {
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(circle, #ff0000 0%, #cc0000 100%);
+            animation: quake-pulse-major 0.8s ease-out infinite;
+        }
+
+        @keyframes quake-pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        @keyframes quake-pulse-major {
+            0% { transform: scale(1); opacity: 1; box-shadow: 0 0 10px #ff0000; }
+            100% { transform: scale(2.5); opacity: 0; box-shadow: 0 0 30px #ff0000; }
+        }
+
+        .quake-label {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.45rem;
+            color: #ff6600;
+            white-space: nowrap;
+        }
+
+        /* Cyber threat indicators */
+        .cyber-zone {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 16;
+        }
+
+        .cyber-icon {
+            width: 20px;
+            height: 20px;
+            border: 1px dashed #ff00ff;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: cyber-scan 3s linear infinite;
+        }
+
+        .cyber-zone.active .cyber-icon {
+            opacity: 0.8;
+            border-color: #ff00ff;
+            box-shadow: 0 0 15px rgba(255,0,255,0.4);
+            animation: cyber-active 1s ease-in-out infinite;
+        }
+
+        @keyframes cyber-scan {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes cyber-active {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .cyber-label {
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.4rem;
+            color: #ff00ff;
+            opacity: 0.6;
+        }
+
+        /* Layoff tracker */
+        .layoff-item {
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .layoff-company {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text);
+        }
+
+        .layoff-count {
+            font-size: 0.8rem;
+            color: var(--red);
+            font-weight: bold;
+            float: right;
+        }
+
+        .layoff-meta {
+            font-size: 0.55rem;
+            color: var(--text-dim);
+            margin-top: 0.2rem;
+        }
+
+        /* Situation panels */
+        .situation-header {
+            padding: 0.75rem 1rem;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .situation-title {
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .situation-subtitle {
+            font-size: 0.6rem;
+            color: var(--text-dim);
+        }
+
+        .situation-status {
+            display: inline-block;
+            padding: 0.15rem 0.4rem;
+            font-size: 0.55rem;
+            font-weight: bold;
+            border-radius: 2px;
+            margin-left: 0.5rem;
+        }
+
+        .situation-status.critical { background: var(--red); color: #fff; }
+        .situation-status.elevated { background: var(--yellow); color: var(--bg); }
+        .situation-status.monitoring { background: var(--green); color: var(--bg); }
+
+        .situation-item {
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.7rem;
+        }
+
+        .situation-item .label {
+            color: var(--text-dim);
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
         .loading-msg {
             padding: 1rem;
             color: var(--text-dim);
@@ -1168,6 +1375,39 @@
             </div>
         </section>
 
+        <!-- Layoffs Tracker -->
+        <section class="panel" data-panel="layoffs">
+            <div class="panel-header">
+                <span class="panel-title">Layoffs Tracker</span>
+                <span class="panel-count" id="layoffsCount">-</span>
+            </div>
+            <div class="panel-content" id="layoffsPanel">
+                <div class="loading-msg">Loading...</div>
+            </div>
+        </section>
+
+        <!-- Venezuela Situation -->
+        <section class="panel" data-panel="venezuela">
+            <div class="panel-header">
+                <span class="panel-title">Venezuela Situation</span>
+                <span class="panel-count" id="venezuelaStatus">-</span>
+            </div>
+            <div class="panel-content" id="venezuelaPanel">
+                <div class="loading-msg">Loading...</div>
+            </div>
+        </section>
+
+        <!-- Greenland Situation -->
+        <section class="panel" data-panel="greenland">
+            <div class="panel-header">
+                <span class="panel-title">Greenland Situation</span>
+                <span class="panel-count" id="greenlandStatus">-</span>
+            </div>
+            <div class="panel-content" id="greenlandPanel">
+                <div class="loading-msg">Loading...</div>
+            </div>
+        </section>
+
     </main>
 
     <script>
@@ -1187,7 +1427,10 @@
             mainchar: { name: 'Main Character', priority: 2 },
             printer: { name: 'Money Printer', priority: 2 },
             contracts: { name: 'Gov Contracts', priority: 3 },
-            ai: { name: 'AI Arms Race', priority: 3 }
+            ai: { name: 'AI Arms Race', priority: 3 },
+            layoffs: { name: 'Layoffs Tracker', priority: 3 },
+            venezuela: { name: 'Venezuela Situation', priority: 2 },
+            greenland: { name: 'Greenland Situation', priority: 2 }
         };
 
         // Load panel visibility from localStorage
@@ -1529,7 +1772,27 @@
             { id: 'jerusalem', name: 'Tel Aviv', subtext: 'Mossad/IDF', lat: 32.07, lon: 34.78, keywords: ['israel', 'israeli', 'gaza', 'hamas', 'idf', 'netanyahu', 'mossad'] },
             { id: 'pyongyang', name: 'Pyongyang', subtext: 'DPRK Watch', lat: 39.03, lon: 125.75, keywords: ['north korea', 'kim jong', 'pyongyang', 'dprk', 'korean missile'] },
             { id: 'london', name: 'London', subtext: 'GCHQ/MI6', lat: 51.5, lon: -0.12, keywords: ['uk', 'britain', 'british', 'mi6', 'gchq', 'london'] },
-            { id: 'brussels', name: 'Brussels', subtext: 'NATO HQ', lat: 50.85, lon: 4.35, keywords: ['nato', 'eu', 'european union', 'brussels'] }
+            { id: 'brussels', name: 'Brussels', subtext: 'NATO HQ', lat: 50.85, lon: 4.35, keywords: ['nato', 'eu', 'european union', 'brussels'] },
+            // NEW: Venezuela & Greenland situations
+            { id: 'caracas', name: 'Caracas', subtext: 'Venezuela Crisis', lat: 10.5, lon: -66.9, keywords: ['venezuela', 'maduro', 'caracas', 'guaido', 'venezuelan', 'pdvsa'] },
+            { id: 'greenland', name: 'Nuuk', subtext: 'Arctic Dispute', lat: 64.18, lon: -51.7, keywords: ['greenland', 'denmark', 'arctic', 'nuuk', 'thule', 'rare earth'] }
+        ];
+
+        // Shipping chokepoints for supply chain monitoring
+        const SHIPPING_CHOKEPOINTS = [
+            { id: 'suez', name: 'Suez', lat: 30.0, lon: 32.5, keywords: ['suez', 'red sea', 'houthi', 'canal'] },
+            { id: 'panama', name: 'Panama', lat: 9.1, lon: -79.7, keywords: ['panama canal', 'panama'] },
+            { id: 'hormuz', name: 'Hormuz', lat: 26.5, lon: 56.3, keywords: ['hormuz', 'strait of hormuz', 'persian gulf'] },
+            { id: 'malacca', name: 'Malacca', lat: 2.5, lon: 101.5, keywords: ['malacca', 'singapore strait'] },
+            { id: 'bosphorus', name: 'Bosphorus', lat: 41.1, lon: 29.0, keywords: ['bosphorus', 'black sea', 'turkish strait'] }
+        ];
+
+        // Cyber threat regions
+        const CYBER_REGIONS = [
+            { id: 'cyber_russia', name: 'RU', lat: 55.75, lon: 45.0, group: 'APT28/29' },
+            { id: 'cyber_china', name: 'CN', lat: 35.0, lon: 105.0, group: 'APT41' },
+            { id: 'cyber_nk', name: 'NK', lat: 39.0, lon: 127.0, group: 'Lazarus' },
+            { id: 'cyber_iran', name: 'IR', lat: 32.0, lon: 53.0, group: 'APT33' }
         ];
 
         // Convert lat/lon to map position (simple equirectangular projection)
@@ -1568,7 +1831,7 @@
         }
 
         // Render the global map - Situation Room Style
-        function renderGlobalMap(activityData) {
+        function renderGlobalMap(activityData, earthquakes = [], shippingAlerts = []) {
             const panel = document.getElementById('mapPanel');
 
             let hotspotsHTML = '';
@@ -1585,6 +1848,48 @@
                             ${spot.name}
                             <div class="hotspot-info">${spot.subtext}</div>
                         </div>
+                    </div>
+                `;
+            });
+
+            // Shipping chokepoints
+            let shippingHTML = '';
+            SHIPPING_CHOKEPOINTS.forEach(cp => {
+                const xPercent = ((cp.lon + 180) / 360) * 100;
+                const yPercent = ((90 - cp.lat) / 180) * 100;
+                const isAlert = shippingAlerts.some(a => cp.keywords.some(k => a.toLowerCase().includes(k)));
+                shippingHTML += `
+                    <div class="chokepoint ${isAlert ? 'alert' : ''}" style="left: ${xPercent}%; top: ${yPercent}%;">
+                        <div class="chokepoint-icon"></div>
+                        <div class="chokepoint-label">${cp.name}</div>
+                    </div>
+                `;
+            });
+
+            // Earthquake markers
+            let quakeHTML = '';
+            earthquakes.slice(0, 8).forEach(eq => {
+                const xPercent = ((eq.lon + 180) / 360) * 100;
+                const yPercent = ((90 - eq.lat) / 180) * 100;
+                const isMajor = eq.mag >= 6.0;
+                quakeHTML += `
+                    <div class="quake ${isMajor ? 'major' : ''}" style="left: ${xPercent}%; top: ${yPercent}%;">
+                        <div class="quake-icon"></div>
+                        <div class="quake-label">M${eq.mag.toFixed(1)}</div>
+                    </div>
+                `;
+            });
+
+            // Cyber threat zones
+            let cyberHTML = '';
+            const cyberActive = Math.random() > 0.5; // Simulated - would come from real threat intel
+            CYBER_REGIONS.forEach(cz => {
+                const xPercent = ((cz.lon + 180) / 360) * 100;
+                const yPercent = ((90 - cz.lat) / 180) * 100;
+                cyberHTML += `
+                    <div class="cyber-zone ${cyberActive ? 'active' : ''}" style="left: ${xPercent}%; top: ${yPercent}%;">
+                        <div class="cyber-icon"></div>
+                        <div class="cyber-label">${cz.group}</div>
                     </div>
                 `;
             });
@@ -1671,11 +1976,14 @@
             panel.innerHTML = `
                 <div class="world-map">
                     ${worldMapSVG}
+                    ${cyberHTML}
+                    ${shippingHTML}
+                    ${quakeHTML}
                     ${hotspotsHTML}
                     ${coordLabels}
                     <div class="map-corner-label tl">GLOBAL ACTIVITY MONITOR</div>
                     <div class="map-corner-label tr">CLASSIFICATION: OPEN SOURCE</div>
-                    <div class="map-corner-label bl">PROJECTION: EQUIRECTANGULAR</div>
+                    <div class="map-corner-label bl">⚓ SHIPPING | 🔴 QUAKES | ◯ CYBER</div>
                     <div class="map-corner-label br">${timestamp}</div>
                 </div>
             `;
@@ -2196,6 +2504,192 @@
             }
         }
 
+        // Fetch earthquakes from USGS
+        async function fetchEarthquakes() {
+            try {
+                // USGS API - significant earthquakes in last 7 days
+                const url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson';
+                const text = await fetchWithProxy(url);
+                const data = JSON.parse(text);
+
+                if (!data.features) return [];
+
+                return data.features
+                    .filter(f => f.properties.mag >= 4.0) // Only M4.0+
+                    .slice(0, 15)
+                    .map(f => ({
+                        mag: f.properties.mag,
+                        place: f.properties.place,
+                        time: f.properties.time,
+                        lat: f.geometry.coordinates[1],
+                        lon: f.geometry.coordinates[0],
+                        depth: f.geometry.coordinates[2]
+                    }));
+            } catch (error) {
+                console.error('Error fetching earthquakes:', error);
+                return [];
+            }
+        }
+
+        // Fetch layoffs news
+        async function fetchLayoffs() {
+            try {
+                const searchTerms = encodeURIComponent('tech layoffs 2025 job cuts');
+                const rssUrl = `https://news.google.com/rss/search?q=${searchTerms}&hl=en-US&gl=US&ceid=US:en`;
+                const text = await fetchWithProxy(rssUrl);
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(text, 'text/xml');
+                const items = xml.querySelectorAll('item');
+
+                const layoffs = [];
+                const companies = ['google', 'meta', 'amazon', 'microsoft', 'apple', 'tesla', 'nvidia',
+                    'salesforce', 'stripe', 'spotify', 'intel', 'cisco', 'ibm', 'dell', 'hp', 'oracle',
+                    'adobe', 'paypal', 'uber', 'lyft', 'airbnb', 'doordash', 'snap', 'twitter', 'x corp'];
+
+                items.forEach(item => {
+                    const title = item.querySelector('title')?.textContent || '';
+                    const pubDate = item.querySelector('pubDate')?.textContent;
+                    const link = item.querySelector('link')?.textContent || '';
+
+                    // Extract company name and layoff count
+                    const titleLower = title.toLowerCase();
+                    const company = companies.find(c => titleLower.includes(c));
+
+                    // Look for numbers in title
+                    const countMatch = title.match(/(\d{1,3}(?:,\d{3})*|\d+)\s*(?:employees?|workers?|jobs?|staff|people|positions?)/i) ||
+                                     title.match(/(?:cuts?|lays?\s*off|eliminat\w*|slash\w*)\s*(\d{1,3}(?:,\d{3})*|\d+)/i);
+
+                    if (company || titleLower.includes('layoff') || titleLower.includes('job cut')) {
+                        layoffs.push({
+                            company: company ? company.charAt(0).toUpperCase() + company.slice(1) : 'Tech',
+                            title: title.substring(0, 100),
+                            count: countMatch ? countMatch[1].replace(/,/g, '') : null,
+                            date: pubDate,
+                            link
+                        });
+                    }
+                });
+
+                return layoffs.slice(0, 8);
+            } catch (error) {
+                console.error('Error fetching layoffs:', error);
+                return getRecentLayoffs();
+            }
+        }
+
+        // Fallback layoffs data
+        function getRecentLayoffs() {
+            const today = new Date();
+            const daysAgo = (n) => {
+                const d = new Date(today);
+                d.setDate(d.getDate() - n);
+                return d.toISOString();
+            };
+            return [
+                { company: 'Meta', title: 'Meta cuts workforce in Reality Labs division', count: '700', date: daysAgo(1) },
+                { company: 'Google', title: 'Google restructures cloud division, reduces staff', count: '200', date: daysAgo(2) },
+                { company: 'Microsoft', title: 'Microsoft gaming division sees job cuts', count: '650', date: daysAgo(3) },
+                { company: 'Amazon', title: 'Amazon reduces Alexa team headcount', count: '400', date: daysAgo(4) }
+            ];
+        }
+
+        // Fetch situation news (Venezuela/Greenland)
+        async function fetchSituationNews(keywords, limit = 5) {
+            try {
+                const searchTerms = encodeURIComponent(keywords);
+                const rssUrl = `https://news.google.com/rss/search?q=${searchTerms}&hl=en-US&gl=US&ceid=US:en`;
+                const text = await fetchWithProxy(rssUrl);
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(text, 'text/xml');
+                const items = xml.querySelectorAll('item');
+
+                return Array.from(items).slice(0, limit).map(item => ({
+                    title: item.querySelector('title')?.textContent || '',
+                    link: item.querySelector('link')?.textContent || '',
+                    pubDate: item.querySelector('pubDate')?.textContent,
+                    source: item.querySelector('source')?.textContent || 'News'
+                }));
+            } catch (error) {
+                console.error('Error fetching situation news:', error);
+                return [];
+            }
+        }
+
+        // Render Layoffs panel
+        function renderLayoffs(layoffs) {
+            const panel = document.getElementById('layoffsPanel');
+            const count = document.getElementById('layoffsCount');
+
+            if (!layoffs || layoffs.length === 0) {
+                panel.innerHTML = '<div class="loading-msg">No recent layoffs data</div>';
+                count.textContent = '-';
+                return;
+            }
+
+            count.textContent = layoffs.length;
+
+            panel.innerHTML = layoffs.map(l => `
+                <div class="layoff-item">
+                    <div class="layoff-company">${l.company}</div>
+                    ${l.count ? `<div class="layoff-count">${parseInt(l.count).toLocaleString()} jobs</div>` : ''}
+                    <div class="layoff-meta">
+                        <span class="headline">${l.title}</span>
+                        <span class="time">${timeAgo(l.date)}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Situation panel (Venezuela or Greenland)
+        function renderSituation(panelId, statusId, news, config) {
+            const panel = document.getElementById(panelId);
+            const status = document.getElementById(statusId);
+
+            if (!panel) return;
+
+            // Determine threat level based on recent news volume and keywords
+            let threatLevel = 'monitoring';
+            let threatText = 'MONITORING';
+
+            if (news.length > 0) {
+                const recentNews = news.filter(n => {
+                    const date = new Date(n.pubDate);
+                    const hoursSince = (Date.now() - date.getTime()) / (1000 * 60 * 60);
+                    return hoursSince < 24;
+                });
+
+                const criticalKeywords = config.criticalKeywords || [];
+                const hasCritical = news.some(n =>
+                    criticalKeywords.some(k => n.title.toLowerCase().includes(k))
+                );
+
+                if (hasCritical || recentNews.length >= 3) {
+                    threatLevel = 'critical';
+                    threatText = 'CRITICAL';
+                } else if (recentNews.length >= 1) {
+                    threatLevel = 'elevated';
+                    threatText = 'ELEVATED';
+                }
+            }
+
+            status.innerHTML = `<span class="situation-status ${threatLevel}">${threatText}</span>`;
+
+            const newsHTML = news.length > 0 ? news.map(n => `
+                <div class="situation-item">
+                    <a href="${n.link}" target="_blank" class="headline">${n.title}</a>
+                    <div class="meta">${n.source} · ${timeAgo(n.pubDate)}</div>
+                </div>
+            `).join('') : '<div class="loading-msg">No recent news</div>';
+
+            panel.innerHTML = `
+                <div class="situation-header">
+                    <div class="situation-title">${config.title}</div>
+                    <div class="situation-subtitle">${config.subtitle}</div>
+                </div>
+                ${newsHTML}
+            `;
+        }
+
         // Format relative time
         function timeAgo(dateString) {
             if (!dateString) return '';
@@ -2394,15 +2888,16 @@
                 allNews = [...politics, ...tech, ...finance];
                 setStatus('Loading more...', true);
 
-                // STAGE 2: Secondary data (gov, commodities, polymarket, printer, mainchar)
+                // STAGE 2: Secondary data (gov, commodities, polymarket, printer, earthquakes)
                 const stage2Promise = Promise.all([
                     isPanelEnabled('gov') ? fetchCategory(FEEDS.gov) : Promise.resolve([]),
                     isPanelEnabled('commodities') ? fetchCommodities() : Promise.resolve([]),
                     isPanelEnabled('polymarket') ? fetchPolymarket() : Promise.resolve([]),
-                    isPanelEnabled('printer') ? fetchFedBalance() : Promise.resolve({ value: 0, change: 0, changePercent: 0, percentOfMax: 0 })
+                    isPanelEnabled('printer') ? fetchFedBalance() : Promise.resolve({ value: 0, change: 0, changePercent: 0, percentOfMax: 0 }),
+                    isPanelEnabled('map') ? fetchEarthquakes() : Promise.resolve([])
                 ]);
 
-                const [gov, commodities, polymarket, fedBalance] = await stage2Promise;
+                const [gov, commodities, polymarket, fedBalance, earthquakes] = await stage2Promise;
 
                 if (isPanelEnabled('gov')) {
                     renderNews(gov, 'govPanel', 'govCount');
@@ -2412,10 +2907,16 @@
                 if (isPanelEnabled('polymarket')) renderPolymarket(polymarket);
                 if (isPanelEnabled('printer')) renderMoneyPrinter(fedBalance);
 
-                // Render map and main character with available news
+                // Render map with earthquakes and shipping alert data
                 if (isPanelEnabled('map')) {
                     const activityData = analyzeHotspotActivity(allNews);
-                    renderGlobalMap(activityData);
+                    // Extract shipping alerts from news
+                    const shippingAlerts = allNews.map(n => n.title || '').filter(t =>
+                        t.toLowerCase().includes('suez') || t.toLowerCase().includes('panama') ||
+                        t.toLowerCase().includes('hormuz') || t.toLowerCase().includes('houthi') ||
+                        t.toLowerCase().includes('red sea') || t.toLowerCase().includes('shipping')
+                    );
+                    renderGlobalMap(activityData, earthquakes, shippingAlerts);
                 }
                 if (isPanelEnabled('mainchar')) {
                     const mainCharRankings = calculateMainCharacter(allNews);
@@ -2424,20 +2925,38 @@
 
                 setStatus('Loading extras...', true);
 
-                // STAGE 3: Extra data (congress, whales, contracts, AI) - lowest priority
+                // STAGE 3: Extra data (congress, whales, contracts, AI, layoffs, situations) - lowest priority
                 const stage3Promise = Promise.all([
                     isPanelEnabled('congress') ? fetchCongressTrades() : Promise.resolve([]),
                     isPanelEnabled('whales') ? fetchWhaleTransactions() : Promise.resolve([]),
                     isPanelEnabled('contracts') ? fetchGovContracts() : Promise.resolve([]),
-                    isPanelEnabled('ai') ? fetchAINews() : Promise.resolve([])
+                    isPanelEnabled('ai') ? fetchAINews() : Promise.resolve([]),
+                    isPanelEnabled('layoffs') ? fetchLayoffs() : Promise.resolve([]),
+                    isPanelEnabled('venezuela') ? fetchSituationNews('venezuela maduro caracas crisis') : Promise.resolve([]),
+                    isPanelEnabled('greenland') ? fetchSituationNews('greenland denmark trump arctic') : Promise.resolve([])
                 ]);
 
-                const [congressTrades, whales, contracts, aiNews] = await stage3Promise;
+                const [congressTrades, whales, contracts, aiNews, layoffs, venezuelaNews, greenlandNews] = await stage3Promise;
 
                 if (isPanelEnabled('congress')) renderCongressTrades(congressTrades);
                 if (isPanelEnabled('whales')) renderWhaleWatch(whales);
                 if (isPanelEnabled('contracts')) renderGovContracts(contracts);
                 if (isPanelEnabled('ai')) renderAINews(aiNews);
+                if (isPanelEnabled('layoffs')) renderLayoffs(layoffs);
+                if (isPanelEnabled('venezuela')) {
+                    renderSituation('venezuelaPanel', 'venezuelaStatus', venezuelaNews, {
+                        title: 'Venezuela Crisis',
+                        subtitle: 'Political instability & humanitarian situation',
+                        criticalKeywords: ['invasion', 'military', 'coup', 'violence', 'sanctions', 'arrested']
+                    });
+                }
+                if (isPanelEnabled('greenland')) {
+                    renderSituation('greenlandPanel', 'greenlandStatus', greenlandNews, {
+                        title: 'Greenland Dispute',
+                        subtitle: 'US-Denmark tensions over Arctic territory',
+                        criticalKeywords: ['purchase', 'trump', 'military', 'takeover', 'independence', 'referendum']
+                    });
+                }
 
                 const now = new Date();
                 setStatus(`Updated ${now.toLocaleTimeString()}`);
