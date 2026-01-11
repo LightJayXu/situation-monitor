@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
+	import { browser } from '$app/environment';
 	import { Panel } from '$lib/components/common';
 	import {
 		HOTSPOTS,
@@ -553,7 +554,9 @@
 	});
 
 	onDestroy(() => {
-		window.removeEventListener('resize', updateZoomBehavior);
+		if (browser) {
+			window.removeEventListener('resize', updateZoomBehavior);
+		}
 	});
 </script>
 
