@@ -1,27 +1,55 @@
 <script lang="ts">
 	import { Panel, Badge } from '$lib/components/common';
 	import { getRelativeTime } from '$lib/utils';
+	import { intelNews } from '$lib/stores';
+	import type { NewsItem } from '$lib/types';
+
+	type SourceType = 'osint' | 'govt' | 'think-tank' | 'defense' | 'regional' | 'cyber';
 
 	interface IntelItem {
 		id: string;
 		title: string;
 		link: string;
 		source: string;
-		sourceType: 'osint' | 'govt' | 'think-tank' | 'defense' | 'regional' | 'cyber';
+		sourceType: SourceType;
 		regions: string[];
 		topics: string[];
 		pubDate?: string;
 		isPriority?: boolean;
 	}
 
-	interface Props {
-		items?: IntelItem[];
-		loading?: boolean;
-		error?: string | null;
+	// Subscribe to intel news store directly
+	const storeItems = $derived($intelNews.items);
+	const loading = $derived($intelNews.loading);
+	const error = $derived($intelNews.error);
+
+	// Infer source type from source name
+	function inferSourceType(source: string): SourceType {
+		const s = source.toLowerCase();
+		if (s.includes('cisa') || s.includes('krebs') || s.includes('cyber')) return 'cyber';
+		if (s.includes('bellingcat')) return 'osint';
+		if (s.includes('defense') || s.includes('war') || s.includes('military')) return 'defense';
+		if (s.includes('diplomat') || s.includes('monitor')) return 'regional';
+		if (s.includes('white house') || s.includes('fed') || s.includes('sec') || s.includes('dod')) return 'govt';
+		return 'think-tank';
 	}
 
-	let { items = [], loading = false, error = null }: Props = $props();
+	// Transform NewsItem to IntelItem
+	function transformToIntelItem(item: NewsItem): IntelItem {
+		return {
+			id: item.id,
+			title: item.title,
+			link: item.link,
+			source: item.source,
+			sourceType: inferSourceType(item.source),
+			regions: item.region ? [item.region] : [],
+			topics: item.topics || [],
+			pubDate: item.pubDate,
+			isPriority: item.isAlert
+		};
+	}
 
+	const items = $derived(storeItems.map(transformToIntelItem));
 	const count = $derived(items.length);
 
 	function getSourceBadgeVariant(

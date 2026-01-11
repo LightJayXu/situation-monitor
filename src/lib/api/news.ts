@@ -101,11 +101,11 @@ export async function fetchCategoryNews(category: NewsCategory): Promise<NewsIte
 	};
 
 	try {
-		// Add English language filter and source country filter for relevant results
+		// Add English language filter and timespan for fresh results
 		const baseQuery = categoryQueries[category];
 		const fullQuery = `${baseQuery} sourcelang:english`;
-		// Build the raw GDELT URL (don't pre-encode query - let encodeURIComponent handle the whole URL once)
-		const gdeltUrl = `https://api.gdeltproject.org/api/v2/doc/doc?query=${fullQuery}&mode=artlist&maxrecords=20&format=json&sort=date`;
+		// Build the raw GDELT URL with timespan=7d to get recent articles
+		const gdeltUrl = `https://api.gdeltproject.org/api/v2/doc/doc?query=${fullQuery}&timespan=7d&mode=artlist&maxrecords=20&format=json&sort=date`;
 
 		// Use proxy to avoid CORS - encode the whole URL once
 		const proxyUrl = CORS_PROXY_URL + encodeURIComponent(gdeltUrl);
