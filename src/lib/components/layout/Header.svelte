@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { isRefreshing, lastRefresh } from '$lib/stores';
-	import { timeAgo } from '$lib/utils';
 
 	interface Props {
 		onSettingsClick?: () => void;
@@ -9,7 +8,9 @@
 	let { onSettingsClick }: Props = $props();
 
 	const lastRefreshText = $derived(
-		$lastRefresh ? `Last: ${timeAgo($lastRefresh)}` : 'Never refreshed'
+		$lastRefresh
+			? `Last updated: ${new Date($lastRefresh).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
+			: 'Never refreshed'
 	);
 </script>
 
