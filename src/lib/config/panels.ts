@@ -1,5 +1,5 @@
 /**
- * Panel configuration
+ * Panel configuration - 中文版
  */
 
 export interface PanelConfig {
@@ -35,31 +35,31 @@ export type PanelId =
 	| 'fed';
 
 export const PANELS: Record<PanelId, PanelConfig> = {
-	map: { name: 'Global Map', priority: 1 },
-	politics: { name: 'World / Geopolitical', priority: 1 },
-	tech: { name: 'Technology / AI', priority: 1 },
-	finance: { name: 'Financial', priority: 1 },
-	gov: { name: 'Government / Policy', priority: 2 },
-	heatmap: { name: 'Sector Heatmap', priority: 1 },
-	markets: { name: 'Markets', priority: 1 },
-	monitors: { name: 'My Monitors', priority: 1 },
-	commodities: { name: 'Commodities / VIX', priority: 2 },
-	crypto: { name: 'Crypto', priority: 2 },
-	polymarket: { name: 'Polymarket', priority: 2 },
-	whales: { name: 'Whale Watch', priority: 3 },
-	mainchar: { name: 'Main Character', priority: 2 },
-	printer: { name: 'Money Printer', priority: 2 },
-	contracts: { name: 'Gov Contracts', priority: 3 },
-	ai: { name: 'AI Arms Race', priority: 3 },
-	layoffs: { name: 'Layoffs Tracker', priority: 3 },
-	venezuela: { name: 'Venezuela Situation', priority: 2 },
-	greenland: { name: 'Greenland Situation', priority: 2 },
-	iran: { name: 'Iran Situation', priority: 2 },
-	leaders: { name: 'World Leaders', priority: 1 },
-	intel: { name: 'Intel Feed', priority: 2 },
-	correlation: { name: 'Correlation Engine', priority: 1 },
-	narrative: { name: 'Narrative Tracker', priority: 1 },
-	fed: { name: 'Federal Reserve', priority: 1 }
+	map: { name: '全球地图', priority: 1 },
+	politics: { name: '国际政治', priority: 1 },
+	tech: { name: '科技/AI', priority: 1 },
+	finance: { name: '金融财经', priority: 1 },
+	gov: { name: '政府政策', priority: 2 },
+	heatmap: { name: '板块热力图', priority: 1 },
+	markets: { name: '市场行情', priority: 1 },
+	monitors: { name: '我的监控', priority: 1 },
+	commodities: { name: '大宗商品/VIX', priority: 2 },
+	crypto: { name: '加密货币', priority: 2 },
+	polymarket: { name: '预测市场', priority: 2 },
+	whales: { name: '巨鲸监控', priority: 3 },
+	mainchar: { name: '焦点人物', priority: 2 },
+	printer: { name: '印钞机', priority: 2 },
+	contracts: { name: '政府合同', priority: 3 },
+	ai: { name: 'AI军备竞赛', priority: 3 },
+	layoffs: { name: '裁员追踪', priority: 3 },
+	venezuela: { name: '委内瑞拉局势', priority: 2 },
+	greenland: { name: '格陶兰局势', priority: 2 },
+	iran: { name: '伊朗局势', priority: 2 },
+	leaders: { name: '世界领导人', priority: 1 },
+	intel: { name: '情报动态', priority: 2 },
+	correlation: { name: '关联分析', priority: 1 },
+	narrative: { name: '叙事追踪', priority: 1 },
+	fed: { name: '美联储', priority: 1 }
 };
 
 export const NON_DRAGGABLE_PANELS: PanelId[] = ['map'];
